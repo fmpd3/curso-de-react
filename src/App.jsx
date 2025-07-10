@@ -5,15 +5,35 @@ import "./App.css";
 import "./index.css";
 
 function App() {
-  const [perdao, setMessage] = useState("70 x 7");
-
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: "Estudar React",
+      description: "Estudar os conceitos básicos de React",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "Estudar inglês",
+      description: "Estudar os conceitos básicos de inglês",
+      completed: false,
+    },
+    {
+      id: 3,
+      title: "Estudar matemática",
+      description: "Estudar matemática básica",
+      completed: false,
+    }
+  ]);
   return (
-    <div className="App">
-      <Tasks />
-      <AddTask />
-      <h1 className="logo">Quantas vezes Jesus nos perdoará?</h1>
-      <p>Quantidade: {perdao}</p>
-      <button onClick={() => setMessage("É só uma forma de dizer, ele te perdoará mais vezes =D")}>Revelar</button>
+    <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
+      <div className="w-[500px]">
+        <h1 className="text-3xl text-slate-100 font-bold text-center">
+          Gerenciador de Tarefas
+        </h1>
+        <AddTask />
+        <Tasks tasks={tasks}/>
+      </div>
     </div>
   );
 }
