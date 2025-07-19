@@ -23,42 +23,50 @@ function App() {
       title: "Estudar matemática",
       description: "Estudar matemática básica",
       isCompleted: false,
-    }
+    },
   ]);
 
   function onTaskClick(taskId) 
   {
-    const newTasks = tasks.map((task) => 
-    {
-      if (task.id == taskId) 
-      {
-        return { ...task, isCompleted: !task.isCompleted };
-      }
-      return task;
-    });
+    const newTasks = tasks.map(
+      (task) => 
+        {
+          if (task.id == taskId) 
+          {
+            return { ...task, isCompleted: !task.isCompleted };
+          }
+          return task;
+        }
+      );
     setTasks(newTasks);
   }
 
   function onTrashClick(taskId) 
   {
-    const deleteTask = tasks.map((task) => 
-    { 
-      if (task.id == taskId) 
-      {
-        return { ...task }; 
-      }
-      return null;
-    });
+    const deleteTask = tasks.filter(
+      (task) =>
+        {
+          if (task.id == taskId) 
+          {
+            return false;
+          }
+          return true;
+        }
+      );
     setTasks(deleteTask);
   }
-  
+
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
       <div className="w-[500px]">
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
         </h1>
-        <Tasks tasks={tasks} onTaskClick={onTaskClick}  onTrashClick={onTrashClick}/>
+        <Tasks
+          tasks={tasks}
+          onTaskClick={onTaskClick}
+          onTrashClick={onTrashClick}
+        />
       </div>
     </div>
   );
